@@ -81,6 +81,26 @@ def resolve_borrowing(_, info, id):
     return next((b for b in borrowings if b.id == id), None)
 
 # Borrowing field resolvers
+@borrowing_type.field("bookId")
+def resolve_borrowing_book_id(borrowing, info):
+    return borrowing.book_id
+
+@borrowing_type.field("borrowerName")
+def resolve_borrowing_borrower_name(borrowing, info):
+    return borrowing.borrower_name
+
+@borrowing_type.field("borrowDate")
+def resolve_borrowing_borrow_date(borrowing, info):
+    return borrowing.borrow_date
+
+@borrowing_type.field("dueDate")
+def resolve_borrowing_due_date(borrowing, info):
+    return borrowing.due_date
+
+@borrowing_type.field("returnDate")
+def resolve_borrowing_return_date(borrowing, info):
+    return borrowing.return_date
+
 @borrowing_type.field("book")
 def resolve_borrowing_book(borrowing, info):
     return next((book for book in books if book.id == borrowing.book_id), None)
